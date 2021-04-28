@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share me</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+        margin: 0px;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      ul {
+        padding: 0px;
+      }
+      li {
+        list-style: none;
+      }
+      .flex {
+        display: flex;
+        flex-direction: row-reverse;
+        border-bottom: solid 1px #aaa;
+      }
+      .left {
+        border-right: solid 1px #eee;
+      }
+      .right {
+        flex-grow: 1;
+      }
+      .box,
+      .text {
+        padding: 20px;
+      }
+      .items {
+        border-top: solid 1px #aaa;
+      }
+      .item {
+        display: block;
+        padding: 8px 16px;
+      }
+      li:nth-child(odd) > .item {
+        background-color: #eee;
+      }
+      li:hover > .item {
+        background: #999;
+      }
+      @media only screen and (max-width: 600px) {
+        .flex {
+          flex-direction: column;
+        }
+        .left {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="right">
+        <div class="box">
+          <h2>Files</h2>
+          <div style="font-size: small">Klik untuk mengunduh</div>
+        </div>
+        <ul class="items">
+          {{range $_, $f := .files }}
+          <li>
+            <a href="{{ $f.Path }}" class="item">{{ $f.Label }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="left">
+        <div class="text">
+          <h4 style="margin-bottom: 5px">Share to Me</h4>
+          <p>Scan qr berikut dari hp mu.</p>
+        </div>
+        <img src="data:image/png;base64,{{ .qr }}" alt="" />
+      </div>
+    </div>
+    <div class="footer" style="margin: 30px 0px; text-align: center">
+      2021 &copy;
+      <a href="https://github.com/mwafa/share-me" style="color: teal"
+        >share-me</a
+      >
+    </div>
+  </body>
+</html>

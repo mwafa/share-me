@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+        margin: 0px;
+      }
+    </style>
+  </head>
+  <body style="display: flex; justify-content: center">
+    <div
+      style="
+        margin: 30px;
+        max-width: 300px;
+        border-radius: 20px;
+        border: solid 1px #eee;
+        padding: 30px;
+        box-shadow: 0px 5px 10px #eee;
+      "
+    >
+      <h2 style="margin-bottom: 5px">Login Ke File Share</h2>
+      <div style="font-size: small; margin-bottom: 20px">
+        Lihat password pada aplikasi.
+      </div>
+      <form action="" method="GET">
+        <input
+          style="
+            display: block;
+            border: none;
+            border-bottom: solid 1px gray;
+            width: 100%;
+            margin: 20px 0px;
+            padding: 15px 10px;
+            font-size: 1.3em;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 0px;
+          "
+          autocomplete="off"
+          maxlength="4"
+          type="text"
+          name="{{ .Key }}"
+          placeholder="Password"
+        />
+        <input
+          style="
+            display: block;
+            width: 100%;
+            padding: 15px 5px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px #aaa;
+            font-weight: bold;
+            background-color: rgb(150, 124, 76);
+            color: white;
+          "
+          type="submit"
+          value="Login"
+        />
+      </form>
+      <div style="margin-top: 30px; text-align: center">
+        2021 &copy; <a href="https://github.com/mwafa/share-me">share-me</a>
+      </div>
+    </div>
+  </body>
+</html>
