@@ -1,33 +1,23 @@
-name: Go
+name: Generate release-artifacts
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types:
+      - created
 
+# workflow tasks
 jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    name: Build
-    runs-on: ${{ matrix.os }}
+  generate:
+    name: Generate cross-platform builds
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Go
-        uses: actions/setup-go@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Generate build files
+        uses: thatisuday/go-cross-build@v1
         with:
-          go-version: 1.16
-
-      - name: Build
-        run: go build -v ./...
-
-      - name: Test
-        run: go test -v ./...
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: share-me-${{ matrix.os }}
-          path: share-*
+          platforms: "linux/amd64, darwin/amd64, windows/amd64"
+          package: "demo"
+          name: "program"
+          compress: "true"
+          dest: "dist"
