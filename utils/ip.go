@@ -3,10 +3,9 @@ package utils
 import (
 	"net"
 	"os"
-	"time"
 )
 
-var port = time.Now().UnixNano() % 10000
+var port = 44234
 
 func GetPort() int {
 	return int(port)
