@@ -23,7 +23,13 @@ func main() {
 	link := fmt.Sprintf(":%d", port)
 	utils.OpenBrowser(fmt.Sprintf("http://localhost:%d?pw=%s", port, pw))
 
-	log.Fatal(fasthttp.ListenAndServe(link, func(ctx *fasthttp.RequestCtx) {
-		api.MainHandler(ctx, pw)
-	}))
+	s := &fasthttp.Server{
+		Handler: func(c *fasthttp.RequestCtx) {
+			api.MainHandler(c, pw)
+		},
+		Name:               "Share Me",
+		MaxRequestBodySize: 4 * 1024 * 1024 * 1024,
+	}
+	log.Fatal(s.ListenAndServe(link))
+
 }
