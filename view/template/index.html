@@ -63,9 +63,36 @@
   <body>
     <div class="flex">
       <div class="right">
-        <div class="box">
-          <h2>Files</h2>
-          <div style="font-size: small">Klik untuk mengunduh</div>
+        <div class="box" style="display: flex; justify-content: space-between">
+          <div>
+            <h2>Files</h2>
+            <div style="font-size: small">Klik untuk mengunduh</div>
+          </div>
+          <div>
+            <button
+              style="
+                padding: 10px 15px;
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(150, 124, 76);
+                color: white;
+                font-weight: bold;
+                box-shadow: 0px 3px 5px gray;
+              "
+              id="add"
+            >
+              + Upload
+            </button>
+            <form action="" method="POST" enctype="multipart/form-data">
+              <input
+                style="display: none"
+                type="file"
+                name="file"
+                id="file-upload"
+                onchange="submit()"
+              />
+            </form>
+          </div>
         </div>
         <ul class="items">
           {{range $_, $f := .files }}
@@ -89,5 +116,10 @@
         >share-me</a
       >
     </div>
+    <script>
+      document.getElementById("add").addEventListener("click", () => {
+        document.getElementById("file-upload").click()
+      })
+    </script>
   </body>
 </html>

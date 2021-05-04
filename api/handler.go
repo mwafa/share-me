@@ -7,6 +7,9 @@ import (
 
 func MainHandler(ctx *fasthttp.RequestCtx, pw string) {
 	if IsLogin(ctx, pw) {
+		if ctx.IsPost() {
+			Upload(ctx)
+		}
 		ListHandler(ctx)
 		return
 	}
