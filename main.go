@@ -28,7 +28,7 @@ func main() {
 			api.MainHandler(c, pw)
 		},
 		Name:               "Share Me",
-		MaxRequestBodySize: 4294967295, // (1 << 32) -1
+		MaxRequestBodySize: int(^uint(0) >> 1), // max int
 	}
 	log.Fatal(s.ListenAndServe(link))
 
